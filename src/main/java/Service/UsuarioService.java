@@ -24,6 +24,10 @@ public class UsuarioService {
         return usuarioRepository.save(usuario);
     }
 
+    public boolean existePorCpf(String cpf) {
+        return usuarioRepository.existsByCpf(cpf);
+    }
+
     public void deletar(Long id) {
         usuarioRepository.deleteById(id);
     }

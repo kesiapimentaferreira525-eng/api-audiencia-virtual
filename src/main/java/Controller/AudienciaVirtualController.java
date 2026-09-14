@@ -49,4 +49,14 @@ public class AudienciaVirtualController {
                 .collect(Collectors.toList());
         return ResponseEntity.ok(lista);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletar(@PathVariable Long id) {
+        try {
+            service.deletar(id);
+            return ResponseEntity.noContent().build();
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }

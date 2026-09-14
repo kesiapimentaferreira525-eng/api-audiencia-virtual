@@ -64,4 +64,14 @@ public class AudienciaVirtualService {
     public List<AudienciaVirtual> buscarPorNomeParte(String nome) {
         return audienciaVirtualRepository.findByAgenda_Parte_NomeContainingIgnoreCase(nome);
     }
+
+    @Transactional
+    public void deletar(Long id) {
+        if (!audienciaVirtualRepository.existsById(id)) {
+            throw new IllegalArgumentException(
+                    "Audiência virtual não encontrada com o ID informado: " + id);
+        }
+
+        audienciaVirtualRepository.deleteById(id);
+    }
 }
