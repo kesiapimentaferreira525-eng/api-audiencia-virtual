@@ -50,6 +50,9 @@ public class AudienciaVirtualService {
 
         AudienciaVirtual audiencia = new AudienciaVirtual();
         audiencia.setAgenda(agenda);
+        audiencia.setEmail(dto.getEmail());
+        audiencia.setDataAudiencia(dto.getDataAudiencia());
+        audiencia.setSiteAgendamento(dto.getSiteAgendamento());
         return audienciaVirtualRepository.save(audiencia);
     }
 
