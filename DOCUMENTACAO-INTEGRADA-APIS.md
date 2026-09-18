@@ -109,6 +109,14 @@ O CPF é normalizado para conter apenas números antes da validação e gravaç�
 
 Uma audiência nova sempre é criada com status `AGENDADA`.
 
+### Exclusão
+
+Use `DELETE /v1/audiencias-virtuais/{id}` para remover uma audiência criada
+incorretamente ou já concluída. A operação retorna `204 No Content` quando
+concluída e `404 Not Found` quando o ID não existe. A exclusão não exige
+confirmação na API; a confirmação é feita pelo frontend antes do envio.
+| `DELETE` | `/api/v1/bff/audiencias/{id}` | `DELETE /v1/audiencias-virtuais/{id}` |
+
 ## 4. Endpoints da API
 
 Todos os endpoints usam o prefixo `/v1` e JSON, salvo indicação contrária.
@@ -214,8 +222,10 @@ Regras do fluxo:
 2. Se a agenda não existir, `parteNome`, `parteCpf` e
    `parteNumeroProcesso` também são usados para criar a parte e a agenda.
 3. O CPF é reduzido a dígitos e deve possuir exatamente 11 números.
-4. Uma agenda não pode possuir mais de uma audiência.
-5. A audiência é criada com status `AGENDADA`.
+4. A mesma parte não pode possuir duas audiências na mesma sala e no mesmo horário.
+5. Se o nome da agenda já estiver associado a outra audiência, uma nova agenda é criada
+   para permitir outro horário ou sala.
+6. A audiência é criada com status `AGENDADA`.
 
 Resposta `201`:
 
@@ -254,7 +264,7 @@ Regras de dados inválidas também retornam `400`, com `status`, `titulo` e
 
 ### `409 Conflict`
 
-Conflito de agendamento:
+Conflito de agendamento na mesma sala e horário:
 
 ```json
 {

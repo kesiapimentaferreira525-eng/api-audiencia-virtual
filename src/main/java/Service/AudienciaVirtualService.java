@@ -60,8 +60,16 @@ public class AudienciaVirtualService {
             throw new RuntimeException("A parte informada não foi encontrada no sistema.");
         }
 
+        if (audienciaVirtualRepository.existsByAgenda_Parte_IdAndDataAudienciaAndSiteAgendamento(
+                agenda.getParte().getId(), dto.getDataAudiencia(), dto.getSiteAgendamento())) {
+            throw new IllegalStateException("Já existe uma audiência virtual para esta parte, sala e horário.");
+        }
+
         if (audienciaVirtualRepository.existsByAgenda(agenda)) {
-            throw new IllegalStateException("Já existe uma audiência virtual para esta agenda.");
+            Agenda novaAgenda = new Agenda();
+            novaAgenda.setNome(agenda.getNome());
+            novaAgenda.setParte(agenda.getParte());
+            agenda = agendaRepository.save(novaAgenda);
         }
 
         AudienciaVirtual audiencia = new AudienciaVirtual();

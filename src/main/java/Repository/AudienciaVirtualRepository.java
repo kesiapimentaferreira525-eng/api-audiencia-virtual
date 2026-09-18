@@ -11,6 +11,11 @@ public interface AudienciaVirtualRepository extends JpaRepository<AudienciaVirtu
 
     boolean existsByAgenda(Agenda agenda);
 
+    boolean existsByAgenda_Parte_IdAndDataAudienciaAndSiteAgendamento(
+            Long parteId,
+            java.time.LocalDateTime dataAudiencia,
+            String siteAgendamento);
+
     List<AudienciaVirtual> findByAgenda_Parte_NomeContainingIgnoreCase(String nome);
 
 }
