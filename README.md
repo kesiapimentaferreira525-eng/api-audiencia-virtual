@@ -1,5 +1,11 @@
 # audiencia-virtual-service
 
+## Documentação integrada
+
+A documentação consolidada da API, dos contratos consumidos pelo front-end/BFF
+e do Swagger está em
+[DOCUMENTACAO-INTEGRADA-APIS.md](DOCUMENTACAO-INTEGRADA-APIS.md).
+
 ## Executar com MySQL
 
 1. Crie o banco no MySQL:

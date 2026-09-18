@@ -30,9 +30,11 @@ public class AudienciaVirtualController {
     @ApiResponses({
             @ApiResponse(responseCode = "201", description = "Audiência criada"),
             @ApiResponse(responseCode = "400", description = "Dados inválidos"),
-            @ApiResponse(responseCode = "409", description = "Já existe audiência para a agenda")
+            @ApiResponse(responseCode = "409", description = "Já existe audiência para a agenda"),
+            @ApiResponse(responseCode = "500", description = "Erro inesperado")
     })
-    public ResponseEntity<AudienciaVirtualResponseDto> salvar(@RequestBody @Valid AudienciaVirtualRequestDto requestDTO) {
+    public ResponseEntity<AudienciaVirtualResponseDto> salvar(
+            @RequestBody @Valid AudienciaVirtualRequestDto requestDTO) {
         AudienciaVirtual novaAudiencia = service.agendarAudiencia(requestDTO);
         AudienciaVirtualResponseDto responseDTO = new AudienciaVirtualResponseDto(novaAudiencia);
         return ResponseEntity.status(HttpStatus.CREATED).body(responseDTO);

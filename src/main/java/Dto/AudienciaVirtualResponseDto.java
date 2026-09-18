@@ -8,8 +8,8 @@ public class AudienciaVirtualResponseDto {
 
     @Schema(example = "1")
     private Long id;
-    @Schema(example = "1")
-    private Long agendaId;
+    @Schema(example = "Agenda Maria da Silva")
+    private String agendaNome;
     @Schema(example = "1")
     private Long parteId;
     @Schema(example = "Maria da Silva")
@@ -20,16 +20,20 @@ public class AudienciaVirtualResponseDto {
     private LocalDateTime dataAudiencia;
     @Schema(example = "Microsoft Teams")
     private String siteAgendamento;
+    @Schema(example = "AGENDADA")
+    private String status;
 
-    public AudienciaVirtualResponseDto() {}
+    public AudienciaVirtualResponseDto() {
+    }
 
     public AudienciaVirtualResponseDto(AudienciaVirtual audiencia) {
         this.id = audiencia.getId();
         this.email = audiencia.getEmail();
         this.dataAudiencia = audiencia.getDataAudiencia();
         this.siteAgendamento = audiencia.getSiteAgendamento();
+        this.status = audiencia.getStatus() == null ? "AGENDADA" : audiencia.getStatus().name();
         if (audiencia.getAgenda() != null) {
-            this.agendaId = audiencia.getAgenda().getId();
+            this.agendaNome = audiencia.getAgenda().getNome();
             if (audiencia.getAgenda().getParte() != null) {
                 this.parteId = audiencia.getAgenda().getParte().getId();
                 this.nomeParte = audiencia.getAgenda().getParte().getNome();
@@ -45,12 +49,12 @@ public class AudienciaVirtualResponseDto {
         this.id = id;
     }
 
-    public Long getAgendaId() {
-        return agendaId;
+    public String getAgendaNome() {
+        return agendaNome;
     }
 
-    public void setAgendaId(Long agendaId) {
-        this.agendaId = agendaId;
+    public void setAgendaNome(String agendaNome) {
+        this.agendaNome = agendaNome;
     }
 
     public Long getParteId() {
@@ -69,12 +73,35 @@ public class AudienciaVirtualResponseDto {
         this.nomeParte = nomeParte;
     }
 
-    public String getEmail() { return email; }
-    public void setEmail(String email) { this.email = email; }
+    public String getEmail() {
+        return email;
+    }
 
-    public LocalDateTime getDataAudiencia() { return dataAudiencia; }
-    public void setDataAudiencia(LocalDateTime dataAudiencia) { this.dataAudiencia = dataAudiencia; }
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-    public String getSiteAgendamento() { return siteAgendamento; }
-    public void setSiteAgendamento(String siteAgendamento) { this.siteAgendamento = siteAgendamento; }
+    public LocalDateTime getDataAudiencia() {
+        return dataAudiencia;
+    }
+
+    public void setDataAudiencia(LocalDateTime dataAudiencia) {
+        this.dataAudiencia = dataAudiencia;
+    }
+
+    public String getSiteAgendamento() {
+        return siteAgendamento;
+    }
+
+    public void setSiteAgendamento(String siteAgendamento) {
+        this.siteAgendamento = siteAgendamento;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }

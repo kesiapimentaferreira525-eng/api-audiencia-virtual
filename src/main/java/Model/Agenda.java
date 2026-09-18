@@ -10,6 +10,9 @@ public class Agenda {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(length = 120)
+    private String nome;
+
     @ManyToOne(optional = false)
     @JoinColumn(name = "parte_id", nullable = false)
     private Parte parte;
@@ -19,6 +22,14 @@ public class Agenda {
 
     public Long getId() {
         return id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public Parte getParte() {

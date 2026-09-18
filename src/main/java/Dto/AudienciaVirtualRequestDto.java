@@ -8,9 +8,18 @@ import java.time.LocalDateTime;
 
 public class AudienciaVirtualRequestDto {
 
-    @Schema(description = "Identificador da agenda existente", example = "1", requiredMode = Schema.RequiredMode.REQUIRED)
-    @NotNull(message = "O ID da agenda é obrigatório.")
-    private Long agendaId;
+    @Schema(description = "Nome da agenda existente", example = "Agenda Maria da Silva", requiredMode = Schema.RequiredMode.REQUIRED)
+    @NotBlank(message = "O nome da agenda é obrigatório.")
+    private String agendaNome;
+
+    @NotBlank(message = "O nome da parte é obrigatório para uma nova agenda.")
+    private String parteNome;
+
+    @NotBlank(message = "O CPF da parte é obrigatório para uma nova agenda.")
+    private String parteCpf;
+
+    @NotBlank(message = "O número do processo é obrigatório para uma nova agenda.")
+    private String parteNumeroProcesso;
 
     @Schema(description = "E-mail para contato da audiência", example = "maria.silva@exemplo.com", requiredMode = Schema.RequiredMode.REQUIRED)
     @NotBlank(message = "O e-mail é obrigatório.")
@@ -25,22 +34,62 @@ public class AudienciaVirtualRequestDto {
     @NotBlank(message = "O site de agendamento é obrigatório.")
     private String siteAgendamento;
 
-    public AudienciaVirtualRequestDto() {}
-
-    public Long getAgendaId() {
-        return agendaId;
+    public AudienciaVirtualRequestDto() {
     }
 
-    public void setAgendaId(Long agendaId) {
-        this.agendaId = agendaId;
+    public String getAgendaNome() {
+        return agendaNome;
     }
 
-    public String getEmail() { return email; }
-    public void setEmail(String email) { this.email = email; }
+    public void setAgendaNome(String agendaNome) {
+        this.agendaNome = agendaNome;
+    }
 
-    public LocalDateTime getDataAudiencia() { return dataAudiencia; }
-    public void setDataAudiencia(LocalDateTime dataAudiencia) { this.dataAudiencia = dataAudiencia; }
+    public String getParteNome() {
+        return parteNome;
+    }
 
-    public String getSiteAgendamento() { return siteAgendamento; }
-    public void setSiteAgendamento(String siteAgendamento) { this.siteAgendamento = siteAgendamento; }
+    public void setParteNome(String parteNome) {
+        this.parteNome = parteNome;
+    }
+
+    public String getParteCpf() {
+        return parteCpf;
+    }
+
+    public void setParteCpf(String parteCpf) {
+        this.parteCpf = parteCpf;
+    }
+
+    public String getParteNumeroProcesso() {
+        return parteNumeroProcesso;
+    }
+
+    public void setParteNumeroProcesso(String parteNumeroProcesso) {
+        this.parteNumeroProcesso = parteNumeroProcesso;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public LocalDateTime getDataAudiencia() {
+        return dataAudiencia;
+    }
+
+    public void setDataAudiencia(LocalDateTime dataAudiencia) {
+        this.dataAudiencia = dataAudiencia;
+    }
+
+    public String getSiteAgendamento() {
+        return siteAgendamento;
+    }
+
+    public void setSiteAgendamento(String siteAgendamento) {
+        this.siteAgendamento = siteAgendamento;
+    }
 }

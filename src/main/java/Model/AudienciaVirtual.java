@@ -24,20 +24,58 @@ public class AudienciaVirtual {
     @Column(name = "site_agendamento", length = 100)
     private String siteAgendamento;
 
-    public AudienciaVirtual() {}
+    @Enumerated(EnumType.STRING)
+    @Column(length = 20)
+    private StatusAudiencia status = StatusAudiencia.AGENDADA;
 
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public AudienciaVirtual() {
+    }
 
-    public Agenda getAgenda() { return agenda; }
-    public void setAgenda(Agenda agenda) { this.agenda = agenda; }
+    public Long getId() {
+        return id;
+    }
 
-    public String getEmail() { return email; }
-    public void setEmail(String email) { this.email = email; }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public LocalDateTime getDataAudiencia() { return dataAudiencia; }
-    public void setDataAudiencia(LocalDateTime dataAudiencia) { this.dataAudiencia = dataAudiencia; }
+    public Agenda getAgenda() {
+        return agenda;
+    }
 
-    public String getSiteAgendamento() { return siteAgendamento; }
-    public void setSiteAgendamento(String siteAgendamento) { this.siteAgendamento = siteAgendamento; }
+    public void setAgenda(Agenda agenda) {
+        this.agenda = agenda;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public LocalDateTime getDataAudiencia() {
+        return dataAudiencia;
+    }
+
+    public void setDataAudiencia(LocalDateTime dataAudiencia) {
+        this.dataAudiencia = dataAudiencia;
+    }
+
+    public String getSiteAgendamento() {
+        return siteAgendamento;
+    }
+
+    public void setSiteAgendamento(String siteAgendamento) {
+        this.siteAgendamento = siteAgendamento;
+    }
+
+    public StatusAudiencia getStatus() {
+        return status;
+    }
+
+    public void setStatus(StatusAudiencia status) {
+        this.status = status;
+    }
 }
